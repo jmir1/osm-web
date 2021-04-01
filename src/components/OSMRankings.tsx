@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { Table, Thead, Tbody, Tr, Th, Td } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td, Link, Tooltip } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 export interface OSMRankingsProps {}
 
@@ -31,6 +32,7 @@ const OSMRankings: React.FC<OSMRankingsProps> = () => {
 			})
 			.catch((e) => {
 				console.error(e);
+				//While waiting for cors policy to be fixed
 				setRankings(demodata);
 			});
 	}, [demodata]);
@@ -48,7 +50,13 @@ const OSMRankings: React.FC<OSMRankingsProps> = () => {
 			<Tbody>
 				{rankings.map((user, idx) => (
 					<Tr key={idx}>
-						<Td>{user.username}</Td>
+						<Td>
+							<Tooltip label="osu!profile">
+								<Link href={`https://osu.ppy.sh/u/${user.username}`} isExternal>
+									{user.username} <ExternalLinkIcon mx={"2px"} />
+								</Link>
+							</Tooltip>
+						</Td>
 						<Td>{user.rank}</Td>
 						<Td>{user.pp}</Td>
 						<Td>${user.price.toFixed(2)}</Td>
