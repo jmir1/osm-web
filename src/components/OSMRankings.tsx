@@ -13,7 +13,7 @@ type Ranking = {
 	id: number;
 };
 const OSMRankings: React.FC<OSMRankingsProps> = () => {
-	const { data } = useFetch("https://stocks.jmir.xyz/rankings");
+	const { data } = useFetch("/api/rankings");
 	const rankings = data as Ranking[] | null;
 
 	return (
