@@ -1,41 +1,20 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, Link, Tooltip } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { useFetch } from "../hooks/useFetch";
+import TransactionButton from "./TransactionModal";
 
 export interface OSMRankingsProps {}
-
 type Ranking = {
 	username: string;
 	rank: number;
 	pp: number;
 	price: number;
+	id: number;
 };
-
 const OSMRankings: React.FC<OSMRankingsProps> = () => {
-	const [rankings, setRankings] = useState<Ranking[]>([]);
-
-	const demodata: Ranking[] = require("./demodata.json");
-
-	useEffect(() => {
-		fetch("https://stocks.jmir.xyz/rankings", { method: "GET", mode: "no-cors" })
-			.then((res) => {
-				console.dir(res);
-
-				return res.json();
-			})
-			.then((data) => {
-				console.log(data);
-				if (data) {
-					setRankings(data);
-				}
-			})
-			.catch((e) => {
-				console.error(e);
-				//While waiting for cors policy to be fixed
-				setRankings(demodata);
-			});
-	}, [demodata]);
+	const { data } = useFetch("https://stocks.jmir.xyz/rankings");
+	const rankings = data as Ranking[] | null;
 
 	return (
 		<Table>
@@ -45,23 +24,45 @@ const OSMRankings: React.FC<OSMRankingsProps> = () => {
 					<Th>Rank</Th>
 					<Th>PP</Th>
 					<Th>Stock Price</Th>
+					<Th>Buy/Sell</Th>
 				</Tr>
 			</Thead>
 			<Tbody>
-				{rankings.map((user, idx) => (
-					<Tr key={idx}>
-						<Td>
-							<Tooltip label="osu!profile">
-								<Link href={`https://osu.ppy.sh/u/${user.username}`} isExternal>
-									{user.username} <ExternalLinkIcon mx={"2px"} />
-								</Link>
-							</Tooltip>
-						</Td>
-						<Td>{user.rank}</Td>
-						<Td>{user.pp}</Td>
-						<Td>${user.price.toFixed(2)}</Td>
-					</Tr>
-				))}
+				{rankings ? (
+					rankings.map((user, idx) => {
+						return (
+							<Tr key={idx}>
+								<Td>
+									<Tooltip label="osu!profile">
+										<Link
+											href={`https://osu.ppy.sh/users/${user.id}`}
+											isExternal
+										>
+											{user.username} <ExternalLinkIcon mx={"2px"} />
+										</Link>
+									</Tooltip>
+								</Td>
+								<Td>{user.rank}</Td>
+								<Td>{user.pp}</Td>
+								<Td>${user.price.toFixed(2)}</Td>
+								<Td>
+									<TransactionButton
+										type="buy"
+										username={user.username}
+										userID={user.id}
+									/>
+									<TransactionButton
+										type="sell"
+										username={user.username}
+										userID={user.id}
+									/>
+								</Td>
+							</Tr>
+						);
+					})
+				) : (
+					<Tr>Loading rankings...</Tr>
+				)}
 			</Tbody>
 		</Table>
 	);
