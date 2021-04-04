@@ -33,7 +33,7 @@ type StockProfile = {
 	price: number;
 };
 const PurchaseScreen: React.FC<PurchaseScreenProps> = ({ id }) => {
-	const { data, loading } = useFetch(`https://stocks.jmir.xyz/stock?stock=${id}`);
+	const { data, loading } = useFetch(`https://stocks.jmir.xyz/api/stock?stock=${id}`);
 	const userProfile = data as StockProfile | null;
 
 	return (
