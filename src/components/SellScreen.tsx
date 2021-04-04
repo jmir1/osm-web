@@ -1,41 +1,28 @@
 import {
-	Button,
-	FormControl,
-	FormLabel,
-	Text,
-	NumberInput,
-	NumberInputField,
 	Table,
+	Thead,
+	Tr,
+	Th,
 	Tbody,
 	Td,
-	Th,
-	Thead,
-	Tr
+	Text,
+	FormControl,
+	FormLabel,
+	NumberInput,
+	NumberInputField,
+	Button
 } from "@chakra-ui/react";
 import React from "react";
 import { useFetch } from "../hooks/useFetch";
+import { StockProfile } from "./PurchaseScreen";
 
-export interface PurchaseScreenProps {
+export interface SellScreenProps {
 	id: number;
 }
 
-export type StockProfile = {
-	user: {
-		user: {
-			username: string;
-			id: number;
-		};
-	};
-	shares: {
-		total: number;
-		bought: number;
-	};
-	price: number;
-};
-const PurchaseScreen: React.FC<PurchaseScreenProps> = ({ id }) => {
+const SellScreen: React.FC<SellScreenProps> = ({ id }) => {
 	const { data, loading } = useFetch(`/api/stock?stock=${id}`);
 	const userProfile = data as StockProfile | null;
-
 	return (
 		<>
 			<Table>
@@ -58,7 +45,7 @@ const PurchaseScreen: React.FC<PurchaseScreenProps> = ({ id }) => {
 			</Table>
 			{userProfile ? (
 				<FormControl id="stock-amount">
-					<FormLabel>Enter amount to purchase</FormLabel>
+					<FormLabel>Enter amount to sell</FormLabel>
 					<NumberInput max={userProfile.shares.total - userProfile!.shares.bought}>
 						<NumberInputField />
 					</NumberInput>
@@ -67,11 +54,11 @@ const PurchaseScreen: React.FC<PurchaseScreenProps> = ({ id }) => {
 				<Text>Loading...</Text>
 			)}
 
-			<Button colorScheme="green" my={3} disabled={loading}>
-				Submit Purchase
+			<Button colorScheme="red" my={3} disabled={loading}>
+				Submit sell order
 			</Button>
 		</>
 	);
 };
 
-export default PurchaseScreen;
+export default SellScreen;

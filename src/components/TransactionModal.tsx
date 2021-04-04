@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import PurchaseScreen from "./PurchaseScreen";
+import SellScreen from "./SellScreen";
 
 export interface TransactionButtonProps {
 	username: string;
@@ -36,7 +37,11 @@ const TransactionButton: React.FC<TransactionButtonProps> = ({ username, userID,
 					<ModalHeader>{username} Stock</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
-						<PurchaseScreen id={userID} />
+						{type === "buy" ? (
+							<PurchaseScreen id={userID} />
+						) : (
+							<SellScreen id={userID} />
+						)}
 					</ModalBody>
 				</ModalContent>
 			</Modal>
