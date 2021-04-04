@@ -4,4 +4,4 @@
 
 [API Reference](https://documenter.getpostman.com/view/5483049/TzCLAUWa)
 
-[Demo Site](https://osu-stock-market.netlify.app/)
+[Site](https://stocks.jmir.xyz)

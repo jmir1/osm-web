@@ -56,10 +56,10 @@ const PurchaseScreen: React.FC<PurchaseScreenProps> = ({ id }) => {
 					</Tr>
 				</Tbody>
 			</Table>
-			{!loading ? (
+			{userProfile ? (
 				<FormControl id="stock-amount">
 					<FormLabel>Enter amount to purchase</FormLabel>
-					<NumberInput max={userProfile!.shares.total - userProfile!.shares.bought}>
+					<NumberInput max={userProfile.shares.total - userProfile!.shares.bought}>
 						<NumberInputField />
 					</NumberInput>
 				</FormControl>
