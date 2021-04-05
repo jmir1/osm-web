@@ -36,7 +36,7 @@ const SellScreen: React.FC<SellScreenProps> = ({ id }) => {
 				</Thead>
 				<Tbody>
 					<Tr>
-						<Td>{userProfile?.user.user.username}</Td>
+						<Td>{userProfile?.username}</Td>
 						<Td>{userProfile?.shares.total}</Td>
 						<Td>{userProfile?.shares.bought}</Td>
 						<Td>{userProfile?.price.toFixed(2)}</Td>
