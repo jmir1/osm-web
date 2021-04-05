@@ -20,17 +20,13 @@ export interface PurchaseScreenProps {
 }
 
 export type StockProfile = {
-	user: {
-		user: {
-			username: string;
-			id: number;
-		};
-	};
+	price: number;
+	username: string;
+	id: number;
 	shares: {
 		total: number;
 		bought: number;
-	};
-	price: number;
+	}
 };
 const PurchaseScreen: React.FC<PurchaseScreenProps> = ({ id }) => {
 	const { data, loading } = useFetch(`/api/stock?stock=${id}`);
@@ -49,7 +45,7 @@ const PurchaseScreen: React.FC<PurchaseScreenProps> = ({ id }) => {
 				</Thead>
 				<Tbody>
 					<Tr>
-						<Td>{userProfile?.user.user.username}</Td>
+						<Td>{userProfile?.username}</Td>
 						<Td>{userProfile?.shares.total}</Td>
 						<Td>{userProfile?.shares.bought}</Td>
 						<Td>{userProfile?.price.toFixed(2)}</Td>
