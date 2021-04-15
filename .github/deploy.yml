@@ -1,6 +1,14 @@
-name: new server deployment
+name: CI
 
-on: [push] # tells github to run this on any push to the repository
+on:
+  
+  push:
+    branches: [ new ]
+  pull_request:
+    branches: [ new ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   deploy:
