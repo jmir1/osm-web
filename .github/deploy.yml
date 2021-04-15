@@ -5,7 +5,6 @@ on: [push] # tells github to run this on any push to the repository
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/new' # we tell Github to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
     steps:
       - name: Deploying to server
         uses: appleboy/ssh-action@master # An action made to control Linux servers
