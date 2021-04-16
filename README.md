@@ -1,3 +1,4 @@
+[![Uptime Robot status](https://img.shields.io/uptimerobot/status/m787866747-83651b42fb194dea1fdb86fb?label=new%20osm%20status&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAA0lBMVEUAAADNxNHPvtPRwtbTpOPPutjbYv7dYP/ZgvXSr+DNys7QvNjQvdjPu9jPvdfNy83Pw9PMys3OwtTPvNjaevfRtdzYi/HaePjWlO3MyM/Myc7Xk+7TqeTPvtbafPfbbfvQudrXku/Rsd/Nx9DNyc/Uo+bOxNLUoufQutnQudrVoOjUpObPwNXOxdLWlO7Rst7UpeXOwtTOwdTQutnOw9PPvtbWmOzRs97Ssd/Sst7QuNvQutnSsN/OwdTQutnSr+DSruDRtN3Rs97Rst7Qt9v////njFXhAAAARXRSTlMAAQEBAQICAgUGBwoKCwsPESMoKywuNjY8PkBFSktMTFBka3FyeXx/gYqKi4yNkZOTlpiYm52hqq2wsrK5ur29vsLMzt9qJQiCAAAAYElEQVR42rzBgwHEUABAsXe2bRs1fq39Z+oWTShA+wjlDtCjUuvSZyAYJda37trSKnP8yBgKfgeuG+0+W7+raUOdCy7bkr4fT4PdgxhlcaP1Cv/Np2dOTnw4L+V8NHErAKv9CZ2kq49JAAAAAElFTkSuQmCC&style=for-the-badge)](https://new.osm.jmir.xyz)  
 # osm-web
 new experimental frontend of osm
 
