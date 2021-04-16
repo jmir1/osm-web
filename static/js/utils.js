@@ -92,7 +92,7 @@ const showInfoModal = (row) => {
     document.querySelector('#infoModalLabel').innerHTML = data.username + " stock information"
 
     // Modal-Body
-    let alreadyShowed = ['username'] //'username', 'pp', 'rank', 'price', 'id'
+    let alreadyShowed = ['username', 'pp_history'] //'username', 'pp', 'rank', 'price', 'id'
     let modalBody = '<div class="card bg-darker text-white mb-2">' +
         '<div class="card-header">' +
         '<strong class="me-auto">Official Sites</strong>' +

@@ -1,6 +1,5 @@
 // formatter for cells
 const render = (cell, formatterParams, onRendered) => {
-    console.log(cell);
     let data = ""
     if (Array.isArray(cell)) {
         cell.forEach(d => {
@@ -245,40 +244,12 @@ const generateTable = (table) => {
             history: true,
             ajaxURL: "/api/fetch/data/" + table['id'],
             ajaxResponse: (url, params, json) => {
-                // TODO: create an array editor for siteAddresses...
-                // this is a workaround atm
-                if (window.editMode) {
-                    json.forEach(r => r["siteAddresses"] = workaroundAddressArray(r["siteAddresses"], "string"))
-                }
                 window.rawData[table['id']] = json
-                setTimeout(() => pingTable(table['id']), 1000)
                 return json
-            },
-            dataChanged: () => {
-                if (!window.editMode) {
-                    return
-                }
-
-                console.log("Table", "#table-" + table['id'], "has been edited")
-                if (window.dataTables[table['id']]) {
-                    let undoSize = window.dataTables[table['id']].getHistoryUndoSize(),
-                        redoSize = window.dataTables[table['id']].getHistoryRedoSize(),
-                        editCells = window.dataTables[table['id']].getEditedCells().length
-                    console.log("currently", undoSize, "undos and", redoSize, "redos available and", editCells, "edited Cells")
-
-                    setEditHistoryButtonState(table['id'])
-                } else if (tablesGenerated) {
-                    console.error("Failed to access table-object of", table["id"])
-                }
             },
             initialSort: [
                 {column: "price", dir: "desc"}
-            ],
-            rowSelectionChanged: (d, rows) => {
-                if (window.editMode) {
-                    document.querySelector("#delete-" + table["id"]).disabled = rows.length === 0
-                }
-            }
+            ]
         })
     } catch (e) {
         console.error("Yeah, failed to generate table", table["id"], "due to", e)
