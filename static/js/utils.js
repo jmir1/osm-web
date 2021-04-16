@@ -93,11 +93,7 @@ const showInfoModal = (row) => {
 
     // Modal-Body
     let alreadyShowed = ['username', 'pp_history'] //'username', 'pp', 'rank', 'price', 'id'
-    let modalBody = '<div class="card bg-darker text-white mb-2">' +
-        '<div class="card-header">' +
-        '<strong class="me-auto">Official Sites</strong>' +
-        '</div>' +
-        '<div class="card-body">'
+    let modalBody = ''
 
 
     if (data['username']) {
